@@ -11,7 +11,6 @@ function ProductList() {
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart.items);
     const {items,add} = useContext(cartContext);
-    console.log(items);
 
 
     const plantsArray = [
