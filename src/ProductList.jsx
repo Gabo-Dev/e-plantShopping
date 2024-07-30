@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
 import { addItem } from './CartSlice';
@@ -10,8 +10,7 @@ function ProductList() {
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart.items);
-    const {items,add} = useContext(cartContext);
-
+    const { items, add } = useContext(cartContext);
 
     const plantsArray = [
         {
@@ -298,10 +297,11 @@ function ProductList() {
                                         <img src={plant.image} alt={plant.name} className='product-image' />
                                         <p className="product-price">{plant.cost}</p>
                                         <p>{plant.description}</p>
-                                        <button className='product-button'
+                                        <button className={`${items.some(item => item.name === plant.name) ? 'product-button.added-to-cart' : 'product-button'}`}
                                             onClick={() => handleAddToCart(plant)}
+                                            disabled={items.some(item => item.name === plant.name)}
                                         >
-                                            Add to Cart
+                                            {items.some(item => item.name === plant.name) ? 'Added to Cart' : 'Add to Cart'}
                                         </button>
                                     </div>
                                 ))}

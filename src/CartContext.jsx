@@ -12,7 +12,6 @@ export const CartContextProvider = ({children}) =>{
             }
             return [...addedToCart, plant]; // Add the new item to the cart
         });
-        console.log(addedToCart);
     };
 
     const remove = (plant) => {
@@ -21,7 +20,7 @@ export const CartContextProvider = ({children}) =>{
         );
     };
     return(
-        <cartContext.Provider value={{addedToCart,add,remove}}>
+        <cartContext.Provider value={{items:addedToCart,add,remove}}>
             {children}
         </cartContext.Provider>
     );
